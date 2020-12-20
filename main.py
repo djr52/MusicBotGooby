@@ -17,7 +17,7 @@ async def onMessage(message):
     if message.content.startswith('!henlo'):
         await message.channel.send('Hello!')
 
-client.run('NzkwMDQwMTEwOTcxMzU1MTU3.X960MA.6sbKDv5jtjWLUtsR6_x5nYMkmT8')
+client.run(os.getenv('token'))
 """
 bot = commands.Bot(command_prefix='>')
 
