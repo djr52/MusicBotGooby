@@ -5,6 +5,7 @@ ytOAuth.py
 #clientid json
 .json
 desktopClientSecret.json
+webClientSecret.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
