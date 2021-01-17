@@ -16,8 +16,7 @@ def get_quote():
     quote = data[0]['q'] + " -" + data[0]['a']
     return(quote)
 def get_query(userQuery):
-    #hardcoded query
-    #will be changed in order to take any input
+
     response = ytSearch.youtube_query(userQuery)
     return(response)
 
