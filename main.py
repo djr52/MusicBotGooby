@@ -15,11 +15,10 @@ def get_quote():
     data = json.loads(response.text)
     quote = data[0]['q'] + " -" + data[0]['a']
     return(quote)
-def get_query():
+def get_query(userQuery):
     #hardcoded query
     #will be changed in order to take any input
-    q = "whatsup"
-    response = ytSearch.youtube_query(q)
+    response = ytSearch.youtube_query(userQuery)
     return(response)
 
 @client.event
@@ -31,10 +30,12 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('t'):
-        quote = get_quote()
-        query = get_query()
-        await message.channel.send(query)
+    msg = message.content
+    if message.content.startswith('find '):
+        #quote = get_quote()
+        query = msg[5:]
+        youtubeResponse = get_query(query)
+        await message.channel.send(str(youtubeResponse) + " results found")
 
 client.run(os.getenv('TOKEN'))
 

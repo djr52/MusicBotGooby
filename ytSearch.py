@@ -9,6 +9,8 @@ import json
 import google_auth_oauthlib.flow
 import googleapiclient.discovery
 import googleapiclient.errors
+import argparse
+import sys
 
 
 scopes = ["https://www.googleapis.com/auth/youtube"]
@@ -64,16 +66,25 @@ def youtube_query(query):
     request = youtube.search().list(
         part="snippet",
         channelType="any",
-        maxResults=3,
+        maxResults=1,
         q= query
     )
-    response = request.execute()
-    data = json.loads(response)
+    response = request.execute() #This is apparently already a dictionary
+    #data = json.loads(response)
+    #data = json.dumps(response) #debug line to grab and format json data
 
-    return data
+    return response["pageInfo"]["totalResults"]
+"""
+def main(args):
+    parser = argparse.ArgumentParser(description="Add query")
+    parser.add_argument("-x", "--xcenter", type=float, default= 2, required=False)
+"""
 
-
-'''
 if __name__ == "__main__":
-    main()
-'''
+    youtube_query(sys.argv[1])
+"""
+def main():
+    print(youtube_query("hello"))
+
+main()
+"""
