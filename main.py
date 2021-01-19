@@ -23,6 +23,8 @@ def get_query(userQuery):
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
+    activity = discord.Activity(type=discord.ActivityType.listening, name="Tunes to Test to")
+    await client.change_presence(activity=activity)
 
 @client.event
 async def on_message(message):
